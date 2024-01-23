@@ -3,31 +3,91 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --deep-blue: #11009e;
+  --medium-blue: #4942e4;
+  --medium-pink: #e6b9de;
+  --light-pink: #fae7f3;
+  --ghost-white: #f8f8ff;
+
+  --number-gradient:linear-gradient(
+    180deg,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
+  );
+  --theme-gradient:linear-gradient(
+    225deg,
+    #ff3cac 0%,
+    #784ba0 50%,
+    #2b86c5 100%
+  );
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+@font-face {
+  font-family: "Sentasans";
+  src: url("./../../assets/SentaSans_Font/SentaSans_Light.otf")
+    format("opentype");
+  font-weight: 500;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* font-family: 'Sentasans', Arial, Helvetica, sans-serif; */
+  background-color: var(--ghost-white);
+}
+.hamburger {
+  flex-direction: column;
+  span:not(.invisible) {
+    border: 1px solid rgb(52, 50, 50);
+    margin-bottom: 0.25rem;
+    width: 1.5rem;
+    display: inline-block;
+    /* height: .5rem; */
+  }
+}
+.mobilemenu {
+  height: calc(100% - 12%);
+  top: 12%;
+}
+.introtext {
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: #ff3cac;
+  background-image: var(--theme-gradient);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.cardtext {
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: #ff3cac;
+  background-image: var(--number-gradient);
+}
+
+.card-wrapper {
+  grid-template-rows: repeat(3, minmax(20rem, 30svh));
+  span {
+    grid-row: span;
   }
+}
+
+@media screen and (min-width: 768px) {
+  .card-wrapper {
+    grid-template-rows: repeat(2, minmax(20rem, 30svh));
+    :nth-child(1) {
+      grid-row: span 2;
+    }
+  }
+}
+
+.rc-slider-handle{
+  background-color: blue !important;
+  border:none !important;
+}
+.rc-slider-handle-dragging{
+  box-shadow:none !important;
+}
+
+.rc-slider-track{
+  background-image:var(--theme-gradient) !important;
 }
